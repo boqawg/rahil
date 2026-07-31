@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   
-  <!-- Italian Modern & Editorial Typography -->
+  <!-- Italian Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,18 +34,51 @@
       font-family: 'Bodoni Moda', serif;
     }
 
-    /* Italian Glass Card Effect */
+    /* Scroll Reveal Motion */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Italian Glass Card with Glow Effect on Hover/Active */
     .italian-card {
-      background: rgba(250, 247, 242, 0.75);
+      position: relative;
+      background: rgba(250, 247, 242, 0.85);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-line);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    /* Glow Effect Overlay */
+    .italian-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 168, 128, 0.2), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .italian-card:hover::before, .italian-card:active::before {
+      opacity: 1;
     }
 
     .italian-card:hover {
       border-color: var(--gold-accent);
       transform: translateY(-6px);
-      box-shadow: 0 20px 30px -10px rgba(197, 168, 128, 0.15);
+      box-shadow: 0 20px 35px -10px rgba(197, 168, 128, 0.25);
     }
 
     /* Custom Scrollbar */
@@ -92,15 +125,16 @@
   </header>
 
   <main>
-   <!-- Hero Section -->
-   <section class="w-full min-h-[85vh] flex items-center border-b border-[#E6DCCF] bg-[#F3EDE2] relative overflow-hidden py-20">
-    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:36px_36px]"></div>
+   <!-- Hero Section with Custom Background Image Support -->
+   <section id="about" class="w-full min-h-[90vh] flex items-center border-b border-[#E6DCCF] relative overflow-hidden py-24 bg-cover bg-center" style="background-image: linear-gradient(180deg, rgba(250, 247, 242, 0.88) 0%, rgba(243, 237, 226, 0.94) 100%), url('YOUR_IMAGE_URL');">
+    
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:36px_36px]"></div>
 
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10">
      
-     <div class="lg:col-span-8">
+     <div class="lg:col-span-8 reveal">
       <div class="inline-flex items-center gap-2 rounded-full border border-[#C5A880]/40 bg-[#EAD5CE]/40 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#1C201D] mb-8">
-       <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span> Founder of BOQA Agency
+       <span class="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse"></span> Founder of BOQA Agency
       </div>
       
       <h1 class="text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.1] text-[#1C201D] font-serif-italiano">
@@ -108,7 +142,7 @@
        <span class="italic font-normal text-[#C5A880]">High-End Digital Experiences.</span>
       </h1>
       
-      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-[#1C201D]/75 font-light">
+      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-[#1C201D]/80 font-light">
        Hello, I am <strong class="font-semibold text-[#1C201D]">Rahil Abdallah Otsmane</strong>. As a Graphic Designer, Web Developer, and Founder of <strong class="font-semibold text-[#1C201D]">BOQA</strong>, I blend Italian aesthetic minimalism with modern web engineering to sculpt unique visual identities and interactive digital platforms.
       </p>
       
@@ -117,25 +151,27 @@
         Explore Portfolio (10 Works)
        </a>
        
-       <a href="#about" class="rounded-full border border-[#1C201D] bg-transparent px-8 py-4 text-xs font-bold tracking-widest uppercase text-[#1C201D] hover:bg-[#1C201D] hover:text-[#FAF7F2] transition-all">
-        About My Vision
+       <a href="#contact" class="rounded-full border border-[#1C201D] bg-transparent px-8 py-4 text-xs font-bold tracking-widest uppercase text-[#1C201D] hover:bg-[#1C201D] hover:text-[#FAF7F2] transition-all">
+        Book a Service
        </a>
       </div>
      </div>
 
-     <!-- Visual Editorial Card -->
-     <div class="lg:col-span-4">
-      <div class="italian-card p-8 rounded-[2.5rem] relative overflow-hidden">
-       <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Design Philosophy</span>
-       <h3 class="font-serif-italiano text-3xl font-normal text-[#1C201D] mt-3 leading-snug">"Simplicity is the ultimate sophistication."</h3>
-       <p class="text-xs text-[#1C201D]/70 mt-4 leading-relaxed">Specializing in brand strategy, custom graphic layouts, aesthetic UI/UX design, and clean web development for ambitious projects.</p>
-       
-       <div class="mt-8 pt-6 border-t border-[#E6DCCF] flex items-center justify-between">
-        <div>
-         <span class="block text-2xl font-bold font-serif-italiano text-[#1C201D]">BOQA</span>
-         <span class="text-[10px] tracking-widest uppercase text-[#C5A880]">Digital Agency</span>
+     <!-- Visual Card with Glow Effect -->
+     <div class="lg:col-span-4 reveal">
+      <div class="italian-card p-8 rounded-[2.5rem]">
+       <div class="relative z-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Design Philosophy</span>
+        <h3 class="font-serif-italiano text-3xl font-normal text-[#1C201D] mt-3 leading-snug">"Simplicity is the ultimate sophistication."</h3>
+        <p class="text-xs text-[#1C201D]/70 mt-4 leading-relaxed">Specializing in brand strategy, custom graphic layouts, aesthetic UI/UX design, and clean web development for ambitious projects.</p>
+        
+        <div class="mt-8 pt-6 border-t border-[#E6DCCF] flex items-center justify-between">
+         <div>
+          <span class="block text-2xl font-bold font-serif-italiano text-[#1C201D]">BOQA</span>
+          <span class="text-[10px] tracking-widest uppercase text-[#C5A880]">Digital Agency</span>
+         </div>
+         <i data-lucide="sparkles" class="w-6 h-6 text-[#C5A880]"></i>
         </div>
-        <i data-lucide="sparkles" class="w-6 h-6 text-[#C5A880]"></i>
        </div>
       </div>
      </div>
@@ -144,9 +180,9 @@
    </section>
 
    <!-- Expertise / Services Section -->
-   <section id="services" class="w-full py-24 bg-[#FAF7F2] border-b border-[#E6DCCF]">
+   <section id="services" class="w-full py-28 bg-[#FAF7F2] border-b border-[#E6DCCF]">
     <div class="max-w-7xl mx-auto px-6">
-     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
       <div>
        <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Core Capabilities</span>
        <h2 class="text-4xl sm:text-5xl font-normal font-serif-italiano text-[#1C201D] mt-2">Areas of Expertise</h2>
@@ -157,52 +193,57 @@
      <div class="grid md:grid-cols-3 gap-8">
       
       <!-- Skill 1 -->
-      <div class="italian-card p-10 rounded-[2rem]">
-       <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
-        <i data-lucide="palette" class="w-6 h-6"></i>
+      <div class="italian-card p-10 rounded-[2rem] reveal">
+       <div class="relative z-10">
+        <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
+         <i data-lucide="palette" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Graphic Design</h3>
+        <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Crafting high-end editorial layouts, marketing assets, typography hierarchy, and Italian-inspired minimal aesthetic concepts.</p>
        </div>
-       <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Graphic Design</h3>
-       <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Crafting high-end editorial layouts, marketing assets, typography hierarchy, and Italian-inspired minimal aesthetic concepts.</p>
       </div>
 
       <!-- Skill 2 -->
-      <div class="italian-card p-10 rounded-[2rem]">
-       <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
-        <i data-lucide="layout" class="w-6 h-6"></i>
+      <div class="italian-card p-10 rounded-[2rem] reveal">
+       <div class="relative z-10">
+        <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
+         <i data-lucide="layout" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Visual Identity</h3>
+        <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Developing complete brand identity systems, logo design, mood boards, color palettes, and brand guidelines for corporate & luxury niches.</p>
        </div>
-       <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Visual Identity</h3>
-       <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Developing complete brand identity systems, logo design, mood boards, color palettes, and brand guidelines for corporate & luxury niches.</p>
       </div>
 
       <!-- Skill 3 -->
-      <div class="italian-card p-10 rounded-[2rem]">
-       <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
-        <i data-lucide="code" class="w-6 h-6"></i>
+      <div class="italian-card p-10 rounded-[2rem] reveal">
+       <div class="relative z-10">
+        <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
+         <i data-lucide="code" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Web Development</h3>
+        <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Building fast, responsive, and aesthetically refined web applications with smooth interactions, modern animations, and clean architectures.</p>
        </div>
-       <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Web Development</h3>
-       <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Building fast, responsive, and aesthetically refined web applications with smooth interactions, modern animations, and clean architectures.</p>
       </div>
 
      </div>
     </div>
    </section>
 
-   <!-- Portfolio Showcase Section (10 Projects linked from 001 to 010) -->
+   <!-- Portfolio Showcase Section (10 Dynamic Glow Cards) -->
    <section id="works" class="w-full py-28 bg-[#F3EDE2] border-b border-[#E6DCCF]">
     <div class="max-w-7xl mx-auto px-6">
      
-     <div class="text-center max-w-2xl mx-auto mb-20">
+     <div class="text-center max-w-2xl mx-auto mb-20 reveal">
       <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Featured Portfolio</span>
       <h2 class="text-4xl sm:text-5xl font-normal font-serif-italiano text-[#1C201D] mt-2">Selected Works & Projects</h2>
       <p class="text-sm text-[#1C201D]/70 mt-4">Click on any project card below to launch and explore the live interactive website.</p>
      </div>
 
-     <!-- Dynamic Grid of 10 Websites -->
      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <!-- Project 001 -->
-      <a href="https://boqawg.github.io/001/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/001/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 001</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -210,15 +251,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 01</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Custom Luxury Web Design & Branding Layout</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 002 -->
-      <a href="https://boqawg.github.io/002/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/002/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 002</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -226,15 +267,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 02</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Minimalist Interactive Platform</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 003 -->
-      <a href="https://boqawg.github.io/003/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/003/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 003</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -242,15 +283,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 03</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Editorial Identity & Digital Experience</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 004 -->
-      <a href="https://boqawg.github.io/004/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/004/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 004</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -258,15 +299,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 04</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Modern Corporate Interface</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 005 -->
-      <a href="https://boqawg.github.io/005/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/005/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 005</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -274,15 +315,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 05</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Italian Aesthetics Application UI</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 006 -->
-      <a href="https://boqawg.github.io/006/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/006/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 006</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -290,15 +331,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 06</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Custom Web Application</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 007 -->
-      <a href="https://boqawg.github.io/007/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/007/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 007</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -306,15 +347,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 07</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">High-End Product Showcase</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 008 -->
-      <a href="https://boqawg.github.io/008/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/008/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 008</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -322,15 +363,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 08</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Interactive Web Showcase</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 009 -->
-      <a href="https://boqawg.github.io/009/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block">
-       <div>
+      <a href="https://boqawg.github.io/009/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 009</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -338,15 +379,15 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 09</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Elegant Agency Landing Page</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
       </a>
 
       <!-- Project 010 -->
-      <a href="https://boqawg.github.io/010/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block md:col-span-2 lg:col-span-1">
-       <div>
+      <a href="https://boqawg.github.io/010/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block md:col-span-2 lg:col-span-1 reveal">
+       <div class="relative z-10">
         <div class="flex items-center justify-between mb-4">
          <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 010</span>
          <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
@@ -354,7 +395,7 @@
         <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 10</h3>
         <p class="text-xs text-[#1C201D]/70 mt-2">Luxury Digital Platform Architecture</p>
        </div>
-       <div class="mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
+       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
         <span>Live Preview</span>
         <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
        </div>
@@ -365,20 +406,19 @@
     </div>
    </section>
 
-   <!-- Contact & Social Media Links Section -->
+   <!-- Contact Form Section with Extended Service & Timing Fields -->
    <section id="contact" class="w-full py-28 bg-[#FAF7F2]">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
      
-     <div class="lg:col-span-6">
+     <div class="lg:col-span-6 reveal">
       <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Get In Touch</span>
       <h2 class="text-4xl sm:text-5xl font-normal font-serif-italiano text-[#1C201D] mt-2">Let's Create Something Extraordinary Together.</h2>
       <p class="text-sm text-[#1C201D]/70 mt-4 leading-relaxed max-w-md">
-       Whether you need a full visual identity, a custom web design, or want to collaborate with <strong>BOQA</strong> agency, feel free to reach out across social platforms or direct message.
+       Whether you need a visual identity system, a custom website, or want to collaborate with <strong>BOQA</strong> agency, feel free to submit your project requirements below.
       </p>
 
       <!-- Social Icons Grid -->
       <div class="mt-8 flex flex-wrap items-center gap-4">
-       
        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="Instagram">
         <i data-lucide="instagram" class="w-5 h-5"></i>
        </a>
@@ -398,35 +438,62 @@
        <a href="mailto:contact@boqa.agency" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="Email">
         <i data-lucide="mail" class="w-5 h-5"></i>
        </a>
-
       </div>
      </div>
 
-     <!-- Contact Form -->
-     <div class="lg:col-span-6">
+     <!-- Enhanced Contact & Booking Form -->
+     <div class="lg:col-span-6 reveal">
       <div class="italian-card p-10 rounded-[2.5rem]">
-       <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] mb-6">Send a Direct Message</h3>
-       
-       <form class="space-y-4 text-xs" onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent successfully.');">
-        <div>
-         <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Your Name</label>
-         <input type="text" required placeholder="John Doe" class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
-        </div>
+       <div class="relative z-10">
+        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] mb-6">Request a Service</h3>
+        
+        <form class="space-y-4 text-xs" onsubmit="event.preventDefault(); alert('Thank you! Your request has been received successfully. I will get back to you at your preferred time.');">
+         
+         <div class="grid md:grid-cols-2 gap-4">
+          <div>
+           <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Your Name</label>
+           <input type="text" required placeholder="John Doe" class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
+          </div>
 
-        <div>
-         <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Email Address</label>
-         <input type="email" required placeholder="john@example.com" class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
-        </div>
+          <div>
+           <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Phone / WhatsApp</label>
+           <input type="tel" required placeholder="+213 500 000 000" class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
+          </div>
+         </div>
 
-        <div>
-         <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Project Details</label>
-         <textarea rows="4" required placeholder="Tell me about your project or agency needs..." class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all"></textarea>
-        </div>
+         <!-- Service Type Selection -->
+         <div>
+          <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Select Service Type</label>
+          <select required class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
+           <option value="">Choose a service...</option>
+           <option value="web-development">Custom Web Development & Coding</option>
+           <option value="graphic-design">Graphic Design & Editorial Layouts</option>
+           <option value="visual-identity">Complete Visual & Brand Identity</option>
+           <option value="full-package">Full Agency Solution (BOQA Special Package)</option>
+          </select>
+         </div>
 
-        <button type="submit" class="w-full bg-[#1C201D] text-[#FAF7F2] font-bold uppercase tracking-widest py-4 rounded-xl hover:bg-[#C5A880] hover:text-[#1C201D] transition-all">
-         Send Message
-        </button>
-       </form>
+         <!-- Preferred Contact Time -->
+         <div>
+          <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Preferred Time for Contact</label>
+          <select required class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
+           <option value="">Select suitable time slot...</option>
+           <option value="morning">Morning (09:00 AM – 12:00 PM)</option>
+           <option value="afternoon">Afternoon (13:00 PM – 17:00 PM)</option>
+           <option value="evening">Evening (18:00 PM – 21:00 PM)</option>
+          </select>
+         </div>
+
+         <div>
+          <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Project Brief / Message</label>
+          <textarea rows="3" required placeholder="Tell me a bit about your project requirements..." class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all"></textarea>
+         </div>
+
+         <button type="submit" class="w-full bg-[#1C201D] text-[#FAF7F2] font-bold uppercase tracking-widest py-4 rounded-xl hover:bg-[#C5A880] hover:text-[#1C201D] transition-all mt-2">
+          Submit Service Request
+         </button>
+        </form>
+       </div>
       </div>
      </div>
 
@@ -456,10 +523,32 @@
    </div>
   </footer>
 
-  <!-- Initialize Lucide Icons -->
+  <!-- Scripts for Dynamic Motion & Glow Lighting -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
+
+      // Scroll Reveal Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Dynamic Card Glow Light Following Cursor Movement
+      document.querySelectorAll('.italian-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
     });
   </script>
  </body>
