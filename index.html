@@ -1,555 +1,163 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rahil Abdallah Otsmane — Founder & Lead Developer at BOQA</title>
-  
-  <!-- Tailwind CSS & Lucide Icons -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  
-  <!-- Italian Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg-cream: #FAF7F2;
-      --bg-cream-dark: #F3EDE2;
-      --text-dark: #1C201D;
-      --pastel-accent: #EAD5CE;
-      --gold-accent: #C5A880;
-      --border-line: #E6DCCF;
-    }
-    
-    body { 
-      background-color: var(--bg-cream); 
-      color: var(--text-dark); 
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب خدمة</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    .font-serif-italiano {
-      font-family: 'Bodoni Moda', serif;
-    }
+        body {
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    /* Scroll Reveal Motion */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .card-container {
+            background-color: #ffffff;
+            border: 1px solid #dbdbdb;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 380px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            text-align: center;
+        }
 
-    /* Italian Glass Card with Glow Effect on Hover/Active */
-    .italian-card {
-      position: relative;
-      background: rgba(250, 247, 242, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-line);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow: hidden;
-    }
+        .brand-header {
+            margin-bottom: 25px;
+        }
 
-    /* Glow Effect Overlay */
-    .italian-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: inherit;
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 168, 128, 0.2), transparent 40%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-      z-index: 1;
-    }
+        .brand-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
 
-    .italian-card:hover::before, .italian-card:active::before {
-      opacity: 1;
-    }
+        .brand-subtitle {
+            font-size: 13px;
+            color: #737373;
+            line-height: 1.4;
+        }
 
-    .italian-card:hover {
-      border-color: var(--gold-accent);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 35px -10px rgba(197, 168, 128, 0.25);
-    }
+        .form-group {
+            margin-bottom: 12px;
+            text-align: right;
+        }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-cream-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--gold-accent);
-      border-radius: 4px;
-    }
-  </style>
- </head>
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 11px 12px;
+            background-color: #fafafa;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #262626;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
 
- <body class="w-full min-h-screen antialiased selection:bg-[#EAD5CE] selection:text-[#1C201D] overflow-x-hidden">
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #a8a8a8;
+            background-color: #ffffff;
+        }
 
-  <!-- Header / Navigation -->
-  <header class="w-full border-b border-[#E6DCCF] bg-[#FAF7F2]/90 sticky top-0 z-40 backdrop-blur-md">
-   <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-    
-    <a href="#" class="flex items-center gap-3">
-     <div class="w-10 h-10 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#1C201D]">
-      <span class="font-serif-italiano italic font-bold text-lg text-[#C5A880]">R</span>
-     </div>
-     <div class="flex flex-col">
-      <span class="font-serif-italiano font-bold text-xl tracking-tight text-[#1C201D]">Rahil A. Otsmane</span>
-      <span class="text-[9px] tracking-[0.25em] font-medium uppercase text-[#C5A880] -mt-1">Founder & Developer — BOQA</span>
-     </div>
-    </a>
-    
-    <div class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-widest text-[#1C201D]/70">
-     <a class="hover:text-[#C5A880] transition-colors" href="#about">About</a>
-     <a class="hover:text-[#C5A880] transition-colors" href="#services">Expertise</a>
-     <a class="hover:text-[#C5A880] transition-colors" href="#works">Selected Works</a>
-     <a class="hover:text-[#C5A880] transition-colors" href="#contact">Contact</a>
-    </div>
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #8e8e8e;
+        }
 
-    <a href="#contact" class="bg-[#1C201D] text-[#FAF7F2] rounded-full px-7 py-3 text-xs font-bold tracking-widest uppercase hover:bg-[#C5A880] hover:text-[#1C201D] transition-all duration-300">
-     Let's Talk
-    </a>
-   </nav>
-  </header>
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%3c8e8e8e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: left 10px center;
+            background-size: 14px;
+            cursor: pointer;
+        }
 
-  <main>
-   <!-- Hero Section with Custom Background Image Support -->
-   <section id="about" class="w-full min-h-[90vh] flex items-center border-b border-[#E6DCCF] relative overflow-hidden py-24 bg-cover bg-center" style="background-image: linear-gradient(180deg, rgba(250, 247, 242, 0.88) 0%, rgba(243, 237, 226, 0.94) 100%), url('YOUR_IMAGE_URL');">
-    
-    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:36px_36px]"></div>
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 150px;
+        }
 
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10">
-     
-     <div class="lg:col-span-8 reveal">
-      <div class="inline-flex items-center gap-2 rounded-full border border-[#C5A880]/40 bg-[#EAD5CE]/40 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#1C201D] mb-8">
-       <span class="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse"></span> Founder of BOQA Agency
-      </div>
-      
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.1] text-[#1C201D] font-serif-italiano">
-       Crafting Luxury Brands & <br>
-       <span class="italic font-normal text-[#C5A880]">High-End Digital Experiences.</span>
-      </h1>
-      
-      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-[#1C201D]/80 font-light">
-       Hello, I am <strong class="font-semibold text-[#1C201D]">Rahil Abdallah Otsmane</strong>. As a Graphic Designer, Web Developer, and Founder of <strong class="font-semibold text-[#1C201D]">BOQA</strong>, I blend Italian aesthetic minimalism with modern web engineering to sculpt unique visual identities and interactive digital platforms.
-      </p>
-      
-      <div class="mt-10 flex flex-wrap items-center gap-5">
-       <a href="#works" class="bg-[#1C201D] text-[#FAF7F2] rounded-full px-9 py-4 text-xs font-bold tracking-widest uppercase hover:bg-[#C5A880] hover:text-[#1C201D] transition-all shadow-lg">
-        Explore Portfolio (10 Works)
-       </a>
-       
-       <a href="#contact" class="rounded-full border border-[#1C201D] bg-transparent px-8 py-4 text-xs font-bold tracking-widest uppercase text-[#1C201D] hover:bg-[#1C201D] hover:text-[#FAF7F2] transition-all">
-        Book a Service
-       </a>
-      </div>
-     </div>
+        .btn-submit {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
 
-     <!-- Visual Card with Glow Effect -->
-     <div class="lg:col-span-4 reveal">
-      <div class="italian-card p-8 rounded-[2.5rem]">
-       <div class="relative z-10">
-        <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Design Philosophy</span>
-        <h3 class="font-serif-italiano text-3xl font-normal text-[#1C201D] mt-3 leading-snug">"Simplicity is the ultimate sophistication."</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-4 leading-relaxed">Specializing in brand strategy, custom graphic layouts, aesthetic UI/UX design, and clean web development for ambitious projects.</p>
-        
-        <div class="mt-8 pt-6 border-t border-[#E6DCCF] flex items-center justify-between">
-         <div>
-          <span class="block text-2xl font-bold font-serif-italiano text-[#1C201D]">BOQA</span>
-          <span class="text-[10px] tracking-widest uppercase text-[#C5A880]">Digital Agency</span>
-         </div>
-         <i data-lucide="sparkles" class="w-6 h-6 text-[#C5A880]"></i>
+        .btn-submit:hover {
+            opacity: 0.93;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #8e8e8e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="brand-header">
+            <h1 class="brand-title">طلب خدمة جديد</h1>
+            <p class="brand-subtitle">يرجى ملء البيانات التالية لنقوم بالتواصل معك في أسرع وقت</p>
         </div>
-       </div>
-      </div>
-     </div>
 
-    </div>
-   </section>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <input type="tel" class="form-input" placeholder="رقم الهاتف" required dir="rtl">
+            </div>
 
-   <!-- Expertise / Services Section -->
-   <section id="services" class="w-full py-28 bg-[#FAF7F2] border-b border-[#E6DCCF]">
-    <div class="max-w-7xl mx-auto px-6">
-     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
-      <div>
-       <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Core Capabilities</span>
-       <h2 class="text-4xl sm:text-5xl font-normal font-serif-italiano text-[#1C201D] mt-2">Areas of Expertise</h2>
-      </div>
-      <p class="text-sm text-[#1C201D]/60 max-w-sm mt-4 md:mt-0">Seamlessly combining visual art with technical code to elevate digital presence.</p>
-     </div>
+            <div class="form-group">
+                <select class="form-select" required>
+                    <option value="" disabled selected>اختر الخدمة المطلوبة</option>
+                    <option value="graphic-design">تصميم جرافيك</option>
+                    <option value="web-development">تطوير مواقع الويب</option>
+                    <option value="both">تصميم جرافيك + تطوير مواقع</option>
+                </select>
+            </div>
 
-     <div class="grid md:grid-cols-3 gap-8">
-      
-      <!-- Skill 1 -->
-      <div class="italian-card p-10 rounded-[2rem] reveal">
-       <div class="relative z-10">
-        <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
-         <i data-lucide="palette" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Graphic Design</h3>
-        <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Crafting high-end editorial layouts, marketing assets, typography hierarchy, and Italian-inspired minimal aesthetic concepts.</p>
-       </div>
-      </div>
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder="كود الخصم (اختياري)">
+            </div>
 
-      <!-- Skill 2 -->
-      <div class="italian-card p-10 rounded-[2rem] reveal">
-       <div class="relative z-10">
-        <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
-         <i data-lucide="layout" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Visual Identity</h3>
-        <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Developing complete brand identity systems, logo design, mood boards, color palettes, and brand guidelines for corporate & luxury niches.</p>
-       </div>
-      </div>
+            <div class="form-group">
+                <textarea class="form-textarea" placeholder="تفاصيل إضافية أو وصف للمشروع..."></textarea>
+            </div>
 
-      <!-- Skill 3 -->
-      <div class="italian-card p-10 rounded-[2rem] reveal">
-       <div class="relative z-10">
-        <div class="w-12 h-12 rounded-full bg-[#EAD5CE]/40 border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880] mb-6">
-         <i data-lucide="code" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D]">Web Development</h3>
-        <p class="text-sm text-[#1C201D]/70 mt-3 leading-relaxed">Building fast, responsive, and aesthetically refined web applications with smooth interactions, modern animations, and clean architectures.</p>
-       </div>
-      </div>
-
-     </div>
-    </div>
-   </section>
-
-   <!-- Portfolio Showcase Section (10 Dynamic Glow Cards) -->
-   <section id="works" class="w-full py-28 bg-[#F3EDE2] border-b border-[#E6DCCF]">
-    <div class="max-w-7xl mx-auto px-6">
-     
-     <div class="text-center max-w-2xl mx-auto mb-20 reveal">
-      <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Featured Portfolio</span>
-      <h2 class="text-4xl sm:text-5xl font-normal font-serif-italiano text-[#1C201D] mt-2">Selected Works & Projects</h2>
-      <p class="text-sm text-[#1C201D]/70 mt-4">Click on any project card below to launch and explore the live interactive website.</p>
-     </div>
-
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <!-- Project 001 -->
-      <a href="https://boqawg.github.io/001/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 001</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 01</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Custom Luxury Web Design & Branding Layout</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 002 -->
-      <a href="https://tmccclub.github.io/dbkm/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 002</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 02</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Minimalist Interactive Platform</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 003 -->
-      <a href="https://tmccclub.github.io/dbkm/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 003</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 03</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Editorial Identity & Digital Experience</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 004 -->
-      <a href="https://boqawg.github.io/004/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 004</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 04</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Modern Corporate Interface</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 005 -->
-      <a href="https://boqawg.github.io/005/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 005</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 05</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Italian Aesthetics Application UI</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 006 -->
-      <a href="https://boqawg.github.io/006/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 006</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 06</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Custom Web Application</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 007 -->
-      <a href="https://boqawg.github.io/007/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 007</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 07</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">High-End Product Showcase</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 008 -->
-      <a href="https://boqawg.github.io/008/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 008</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 08</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Interactive Web Showcase</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 009 -->
-      <a href="http://rolencetk.github.io/cont/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 009</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 09</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Elegant Agency Landing Page</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-      <!-- Project 010 -->
-      <a href="https://boqawg.github.io/010/" target="_blank" rel="noopener noreferrer" class="italian-card p-8 rounded-[2rem] group flex flex-col justify-between block md:col-span-2 lg:col-span-1 reveal">
-       <div class="relative z-10">
-        <div class="flex items-center justify-between mb-4">
-         <span class="text-xs font-bold tracking-widest text-[#C5A880] uppercase">Project 010</span>
-         <i data-lucide="external-link" class="w-4 h-4 text-[#1C201D]/40 group-hover:text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
-        </div>
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] group-hover:text-[#C5A880] transition-colors">BOQA Concept Site 10</h3>
-        <p class="text-xs text-[#1C201D]/70 mt-2">Luxury Digital Platform Architecture</p>
-       </div>
-       <div class="relative z-10 mt-8 pt-4 border-t border-[#E6DCCF] flex items-center justify-between text-xs text-[#1C201D]/50">
-        <span>Live Preview</span>
-        <span class="font-bold text-[#1C201D] group-hover:text-[#C5A880]">View Site →</span>
-       </div>
-      </a>
-
-     </div>
-
-    </div>
-   </section>
-
-   <!-- Contact Form Section with Extended Service & Timing Fields -->
-   <section id="contact" class="w-full py-28 bg-[#FAF7F2]">
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
-     
-     <div class="lg:col-span-6 reveal">
-      <span class="text-xs font-bold uppercase tracking-widest text-[#C5A880]">Get In Touch</span>
-      <h2 class="text-4xl sm:text-5xl font-normal font-serif-italiano text-[#1C201D] mt-2">Let's Create Something Extraordinary Together.</h2>
-      <p class="text-sm text-[#1C201D]/70 mt-4 leading-relaxed max-w-md">
-       Whether you need a visual identity system, a custom website, or want to collaborate with <strong>BOQA</strong> agency, feel free to submit your project requirements below.
-      </p>
-
-      <!-- Social Icons Grid -->
-      <div class="mt-8 flex flex-wrap items-center gap-4">
-       <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="Instagram">
-        <i data-lucide="instagram" class="w-5 h-5"></i>
-       </a>
-
-       <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="LinkedIn">
-        <i data-lucide="linkedin" class="w-5 h-5"></i>
-       </a>
-
-       <a href="https://github.com/boqawg" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="GitHub">
-        <i data-lucide="github" class="w-5 h-5"></i>
-       </a>
-
-       <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="Dribbble">
-        <i data-lucide="dribbble" class="w-5 h-5"></i>
-       </a>
-
-       <a href="mailto:contact@boqa.agency" class="w-12 h-12 rounded-full border border-[#E6DCCF] bg-[#F3EDE2] flex items-center justify-center text-[#1C201D] hover:bg-[#C5A880] hover:text-[#FAF7F2] hover:border-[#C5A880] transition-all" title="Email">
-        <i data-lucide="mail" class="w-5 h-5"></i>
-       </a>
-      </div>
-     </div>
-
-     <!-- Enhanced Contact & Booking Form -->
-     <div class="lg:col-span-6 reveal">
-      <div class="italian-card p-10 rounded-[2.5rem]">
-       <div class="relative z-10">
-        <h3 class="text-2xl font-bold font-serif-italiano text-[#1C201D] mb-6">Request a Service</h3>
-        
-        <form class="space-y-4 text-xs" onsubmit="event.preventDefault(); alert('Thank you! Your request has been received successfully. I will get back to you at your preferred time.');">
-         
-         <div class="grid md:grid-cols-2 gap-4">
-          <div>
-           <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Your Name</label>
-           <input type="text" required placeholder="John Doe" class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
-          </div>
-
-          <div>
-           <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Phone / WhatsApp</label>
-           <input type="tel" required placeholder="+213 500 000 000" class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
-          </div>
-         </div>
-
-         <!-- Service Type Selection -->
-         <div>
-          <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Select Service Type</label>
-          <select required class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
-           <option value="">Choose a service...</option>
-           <option value="web-development">Custom Web Development & Coding</option>
-           <option value="graphic-design">Graphic Design & Editorial Layouts</option>
-           <option value="visual-identity">Complete Visual & Brand Identity</option>
-           <option value="full-package">Full Agency Solution (BOQA Special Package)</option>
-          </select>
-         </div>
-
-         <!-- Preferred Contact Time -->
-         <div>
-          <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Preferred Time for Contact</label>
-          <select required class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all">
-           <option value="">Select suitable time slot...</option>
-           <option value="morning">Morning (09:00 AM – 12:00 PM)</option>
-           <option value="afternoon">Afternoon (13:00 PM – 17:00 PM)</option>
-           <option value="evening">Evening (18:00 PM – 21:00 PM)</option>
-          </select>
-         </div>
-
-         <div>
-          <label class="block font-bold uppercase tracking-widest text-[#1C201D]/60 mb-2">Project Brief / Message</label>
-          <textarea rows="3" required placeholder="Tell me a bit about your project requirements..." class="w-full bg-[#F3EDE2] border border-[#E6DCCF] rounded-xl px-5 py-3.5 text-[#1C201D] outline-none focus:border-[#C5A880] transition-all"></textarea>
-         </div>
-
-         <button type="submit" class="w-full bg-[#1C201D] text-[#FAF7F2] font-bold uppercase tracking-widest py-4 rounded-xl hover:bg-[#C5A880] hover:text-[#1C201D] transition-all mt-2">
-          Submit Service Request
-         </button>
+            <button type="submit" class="btn-submit">اطلب الخدمة الآن</button>
         </form>
-       </div>
-      </div>
-     </div>
 
-    </div>
-   </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="w-full bg-[#1C201D] text-[#FAF7F2] py-16 border-t border-[#FAF7F2]/10">
-   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 border-b border-[#FAF7F2]/10 pb-12">
-    <div>
-     <h3 class="font-serif-italiano text-3xl font-normal">Rahil Abdallah Otsmane</h3>
-     <p class="text-xs text-[#C5A880] mt-1 tracking-widest uppercase">Founder & Creative Developer at BOQA</p>
+        <p class="footer-note">جميع الحقوق محفوظة © 2026</p>
     </div>
 
-    <div class="flex items-center gap-8 text-xs uppercase tracking-widest text-[#FAF7F2]/70">
-     <a href="#about" class="hover:text-[#C5A880] transition-colors">About</a>
-     <a href="#services" class="hover:text-[#C5A880] transition-colors">Expertise</a>
-     <a href="#works" class="hover:text-[#C5A880] transition-colors">Works</a>
-     <a href="#contact" class="hover:text-[#C5A880] transition-colors">Contact</a>
-    </div>
-   </div>
-
-   <div class="max-w-7xl mx-auto px-6 mt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-[#FAF7F2]/40 gap-4">
-    <p>© 2026 Rahil Abdallah Otsmane. All rights reserved.</p>
-    <p class="uppercase tracking-widest">Designed with Italian Elegance for BOQA Agency</p>
-   </div>
-  </footer>
-
-  <!-- Scripts for Dynamic Motion & Glow Lighting -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
-
-      // Scroll Reveal Observer
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-      // Dynamic Card Glow Light Following Cursor Movement
-      document.querySelectorAll('.italian-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${x}px`);
-          card.style.setProperty('--mouse-y', `${y}px`);
-        });
-      });
-    });
-  </script>
- </body>
+</body>
 </html>
