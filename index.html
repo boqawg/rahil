@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طلب خدمة</title>
+    <title>Request a Service</title>
     <style>
         * {
             box-sizing: border-box;
@@ -18,28 +18,29 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px 16px;
         }
 
         .card-container {
             background-color: #ffffff;
             border: 1px solid #dbdbdb;
-            border-radius: 12px;
+            border-radius: 16px;
             width: 100%;
             max-width: 380px;
-            padding: 35px 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            padding: 40px 32px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
             text-align: center;
         }
 
         .brand-header {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
+        /* Instagram Modern Gradient Text */
         .brand-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
@@ -49,29 +50,31 @@
         .brand-subtitle {
             font-size: 13px;
             color: #737373;
-            line-height: 1.4;
+            line-height: 1.5;
+            font-weight: 400;
         }
 
         .form-group {
-            margin-bottom: 12px;
-            text-align: right;
+            margin-bottom: 14px;
+            text-align: left;
         }
 
         .form-input, .form-select, .form-textarea {
             width: 100%;
-            padding: 11px 12px;
+            padding: 12px 14px;
             background-color: #fafafa;
             border: 1px solid #dbdbdb;
-            border-radius: 6px;
+            border-radius: 10px;
             font-size: 13px;
             color: #262626;
             outline: none;
-            transition: border-color 0.2s ease, background-color 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             border-color: #a8a8a8;
             background-color: #ffffff;
+            box-shadow: 0 0 0 1px #a8a8a8;
         }
 
         .form-input::placeholder, .form-textarea::placeholder {
@@ -83,33 +86,43 @@
             -webkit-appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%3c8e8e8e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: left 10px center;
+            background-position: right 12px center;
             background-size: 14px;
             cursor: pointer;
         }
 
-        .form-textarea {
-            resize: vertical;
-            min-height: 80px;
-            max-height: 150px;
+        /* Fix select placeholder style */
+        .form-select:invalid {
+            color: #8e8e8e;
         }
 
+        .form-select option {
+            color: #262626;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 90px;
+            max-height: 160px;
+        }
+
+        /* Modern Gradient Submit Button */
         .btn-submit {
             width: 100%;
-            padding: 11px;
+            padding: 12px;
             border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: #ffffff;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 8px;
             transition: opacity 0.2s ease, transform 0.1s ease;
         }
 
         .btn-submit:hover {
-            opacity: 0.93;
+            opacity: 0.92;
         }
 
         .btn-submit:active {
@@ -117,7 +130,7 @@
         }
 
         .footer-note {
-            margin-top: 20px;
+            margin-top: 24px;
             font-size: 11px;
             color: #8e8e8e;
         }
@@ -127,36 +140,41 @@
 
     <div class="card-container">
         <div class="brand-header">
-            <h1 class="brand-title">طلب خدمة جديد</h1>
-            <p class="brand-subtitle">يرجى ملء البيانات التالية لنقوم بالتواصل معك في أسرع وقت</p>
+            <h1 class="brand-title">Order a Service</h1>
+            <p class="brand-subtitle">Fill in the details below and we will reach out to you shortly.</p>
         </div>
 
         <form action="#" method="POST">
+            <!-- Phone Number -->
             <div class="form-group">
-                <input type="tel" class="form-input" placeholder="رقم الهاتف" required dir="rtl">
+                <input type="tel" class="form-input" placeholder="Phone Number" required>
             </div>
 
+            <!-- Service Selection -->
             <div class="form-group">
                 <select class="form-select" required>
-                    <option value="" disabled selected>اختر الخدمة المطلوبة</option>
-                    <option value="graphic-design">تصميم جرافيك</option>
-                    <option value="web-development">تطوير مواقع الويب</option>
-                    <option value="both">تصميم جرافيك + تطوير مواقع</option>
+                    <option value="" disabled selected hidden>Select Service</option>
+                    <option value="graphic-design">Graphic Design</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="both">Graphic Design + Web Development</option>
                 </select>
             </div>
 
+            <!-- Promo Code -->
             <div class="form-group">
-                <input type="text" class="form-input" placeholder="كود الخصم (اختياري)">
+                <input type="text" class="form-input" placeholder="Promo Code (Optional)">
             </div>
 
+            <!-- Message / Details -->
             <div class="form-group">
-                <textarea class="form-textarea" placeholder="تفاصيل إضافية أو وصف للمشروع..."></textarea>
+                <textarea class="form-textarea" placeholder="Project details or special requirements..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">اطلب الخدمة الآن</button>
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">Request Service Now</button>
         </form>
 
-        <p class="footer-note">جميع الحقوق محفوظة © 2026</p>
+        <p class="footer-note">© 2026 All Rights Reserved.</p>
     </div>
 
 </body>
